@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+My Stored Posts
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/stored-posts.css" %}">
+{% endblock %}
+
+{% block content %}
+    <section id="stored-posts">
+        <h1>My Stored Posts</h1>
+        
+        {% if has_posts %}
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <article class="post">
+                            <a href="{% url "post-detail-page" post.slug %}">
+                                {% if post.image %}
+                                    <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                {% endif %}
+                                <div class="post-content">
+                                    <h2>{{ post.title }}</h2>
+                                    <p>{{ post.excerpt }}</p>
+                                </div>
+                            </a>
+                            <form action="{% url "read-later" %}" method="POST" class="remove-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value="{{ post.id }}">
+                                <input type="hidden" name="remove" value="true">
+                                <button class="remove-btn">Remove</button>
+                            </form>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="empty-state">
+                <p>You have no stored posts yet.</p>
+                <a href="{% url "starting-page" %}" class="btn">Browse Posts</a>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

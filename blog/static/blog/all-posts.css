@@ -1,0 +1,75 @@
+body {
+    background-color: #e7e7e7;
+}
+
+#main-navigation {
+    background-color: #390281;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+#all-posts {
+    margin: 7rem auto;
+    width: 90%;
+    max-width: 75rem; /* ЗМІНА: 75rem замість 60rem */
+    background-color: white;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+#all-posts h2 {
+    text-align: center;
+    font-size: 2.5rem; /* Трохи більше */
+    color: #390281; /* Темніший колір */
+    margin: 0 0 3rem 0;    
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid #cf79f1;
+}
+
+#all-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 280px замість 300px */
+    gap: 2.5rem;
+}
+
+#all-posts li {
+    display: flex;
+}
+
+/* Специфічні стилі для постів на сторінці всіх постів */
+#all-posts .post {
+    margin-bottom: 0;
+}
+
+/* Адаптивність */
+@media (max-width: 992px) {
+    #all-posts ul {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #all-posts {
+        margin: 5rem auto 2rem auto;
+        padding: 2rem 1.5rem;
+    }
+    
+    #all-posts h2 {
+        font-size: 2.2rem;
+    }
+    
+    #all-posts ul {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    #all-posts ul {
+        grid-template-columns: 1fr; /* Одна колонка на дуже малих екранах */
+    }
+}
